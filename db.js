@@ -52,4 +52,4 @@ let newMobile=new mobile({
 
 
 
-module.exports = mobileschema;
+module.exports = mongoose.model('mobiles', mobileschema);

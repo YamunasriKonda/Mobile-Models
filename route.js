@@ -6,13 +6,19 @@ const router = require("express").Router();
 
 const { mobileModel } = require ("./db");
 
-const mobileRecord = mobileModel
-
 router.use(express.json());
 
 router.post('/create', async(req,res, next)=> {
-    try{const newmobileModel= await mobilemodel.create(req.body);
-        return res.status(201).json(newmobileModel);
+     try{
+        const mobile = mongoose.model('mobiles', mobileModel);
+        let newMobile=new mobile({
+            brand:req.body.brand,
+            modelNo:req.body.modelNo,
+            review: req.body.review,
+            year: req.body.year,
+            price: req.body.price
+        });
+        return res.status(201).json(newMobile);
     } catch (err) {
     return next(err);
 }
@@ -40,8 +46,6 @@ router.get('/', async(req, res, next)=> {
     
 });
 
-router.get("/getAll", (req, res, next) => res.send(mobileRecord));
-
 router.delete('/delete/:id', async (req, res, next)=> {
 
     res.send(mobileModel.splice(req.param.modelNo, 1))
@@ -50,8 +54,18 @@ router.delete('/delete/:id', async (req, res, next)=> {
 
 router.put('/update/:modelno', async(req, res, next) => {
    
-    try{const newmobileModel= await mobilemodel.create(req.body);
-        return res.status(201).json(newmobilemdel);
+    try{
+        const mobile = mongoose.model('mobiles', mobileModel);
+        let newMobile=new mobile({
+            brand:req.body.brand,
+            modelNo:req.body.modelNo,
+            review: req.body.review,
+            year: req.body.year,
+            price: req.body.price
+            
+        });
+        mobile.findOneAndUpdate({modelNo: req.params.modelno},newMobile,{returnDocument: 'after'});
+        return res.status(201).json(newMobile);
     } catch (err) {
     return next(err);
     }
