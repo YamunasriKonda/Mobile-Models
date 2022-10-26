@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const uri= "mongodb://localhost:27017/example";
+const uri= "mongodb://localhost:27017/mobileDb";
 const opts= {useNewUrlParser:true};
 
 mongoose.connect(uri, opts).then(() => {console.log("connection ready")}, (err) => {console.log("error occured")});
@@ -38,18 +38,5 @@ const mobileschema = new Schema({
         minlength:2
     }
 });
-
-const mobile = mongoose.model('mobile', mobileschema);
-
-let newMobile=new mobile({
-    brand:"Apple",
-    modelNo:"iPhone 14 pro Max",
-    review: " The best mobile you can buy in 2022",
-    year: "2022",
-    price: "£1,199"
-    
-});
-
-
 
 module.exports = mongoose.model('mobiles', mobileschema);
