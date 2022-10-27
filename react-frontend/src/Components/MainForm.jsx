@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./MainForm.css";
 
 class MainForm extends Component {
 
@@ -82,7 +83,6 @@ class MainForm extends Component {
         this.setState({result: ''});
     }
 
-
     handleYearInput(event) {
         console.log(event.target.value)
         this.setState({ year: event.target.value })
@@ -102,23 +102,23 @@ class MainForm extends Component {
     }
 
     render() {
-        return (<div>
+        return (<div className="background">
             <div>Brand *: </div>
-            <input onChange={this.handleBrandInput.bind(this)}></input>
+            <input className="input" onChange={this.handleBrandInput.bind(this)}></input>
             <div>Model:</div>
-            <input onChange={this.handleModelInput.bind(this)}></input>
+            <input className="input" onChange={this.handleModelInput.bind(this)}></input>
             <div>Review:</div>
-            <input onChange={this.handleReviewInput.bind(this)}></input>
+            <input className="input" onChange={this.handleReviewInput.bind(this)}></input>
             <div>Year:  </div>
-            <input onChange={this.handleYearInput.bind(this)}></input>
+            <input className="input" onChange={this.handleYearInput.bind(this)}></input>
             <div>Price: </div>
-            <input onChange={this.handlePriceInput.bind(this)} ></input>
+            <input className="input" onChange={this.handlePriceInput.bind(this)} ></input>
             <div> </div>
-            <div>
-                <button onClick={this.getdetails.bind(this)}> Search </button>
-                <button onClick={this.saveDetails.bind(this)}>Create </button>
-                <button onClick={this.updateDetails.bind(this)}> Update </button>
-                <button onClick={this.deleteDetails.bind(this)}> Delete </button>
+            <div className="button-div">
+                <button className="button" onClick={this.getdetails.bind(this)}> Search </button>
+                <button className="button" onClick={this.saveDetails.bind(this)}>Create </button>
+                <button className="button" onClick={this.updateDetails.bind(this)}> Update </button>
+                <button className="button" onClick={this.deleteDetails.bind(this)}> Delete </button>
             </div>
                 <h3>Response to action performed</h3>
                 <div style={{color:'blue'}}>{this.state.result}</div>

@@ -1,0 +1,21 @@
+.button {
+    width: 15vh;
+    margin-right: 2vh;
+    background-color: darkgray;
+}
+
+.button-div{
+    padding-block: 2vh;
+    display: inline-block;
+    margin-right: 2vh;
+}
+
+.input{
+    height: 5vh;
+    width: 51vh;
+    background-color: lightgray;
+}
+
+.background{
+    background-color: aliceblue;
+}
