@@ -53,21 +53,12 @@ router.delete('/delete/:brand', async (req, res, next)=> {
 
 });
 
-router.put('/update/:modelno', async(req, res, next) => {
-   
+router.put('/update/:modelno', async(req, res) => {
     try{
         const mobile = mongoose.model('mobiles', mobileModel);
-        let newMobile=new mobile({
-            brand:req.body.brand,
-            modelNo:req.body.modelNo,
-            review: req.body.review,
-            year: req.body.year,
-            price: req.body.price
-        });
-        let doc = mobile.findOneAndUpdate({modelNo: req.params.modelno},newMobile,{new: true});
-        res.json(doc.review)
+        mobile.findOneAndUpdate({modelNo: req.params.modelno},{review:req.body.review},null);
     } catch (err) {
-        return next(err);
+        return res.status(503);
     }
 
 });
