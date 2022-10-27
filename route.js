@@ -19,8 +19,8 @@ router.post('/create', async(req,res)=> {
             year: req.body.year,
             price: req.body.price
         });
-        newMobile.save();
-
+        const val = await newMobile.save();
+        res.json(newMobile);
 });
 
 router.get('/get/:brand', async(req, res)=> {
@@ -50,15 +50,14 @@ router.delete('/delete/:brand', async (req, res, next)=> {
 
 });
 
-router.put('/update/:modelno', async(req, res) => {
-    try{
-        console.log('review --'+req.body.review)
-        const mobile = mongoose.model('mobiles', mobileModel);
-        mobile.findOneAndUpdate({brand: req.params.modelno},{review:req.body.review},null);
-    } catch (err) {
-        return res.status(503);
-    }
-
+router.put('/update/:brand', async (req, res) => {
+    console.log('brnad parmas: ' + req.params.brand);
+    console.log('Body: ' + req.body);
+    console.log('Body brand: ' + req.body.brand);
+    console.log('Body review: ' + req.body.review);
+    const mobile = mongoose.model('mobiles', mobileModel);
+    let data = await mobile.updateOne({brand: req.params.brand},{$set: req.body});
+    res.send(data);
 });
 
 module.exports = router;
