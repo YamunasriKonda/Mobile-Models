@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import axios from 'axios';
 
 class MainForm extends Component {
 
@@ -12,7 +13,7 @@ class MainForm extends Component {
             price:'',
         }
     }
-
+ 
     handleBrandInput(event){
         console.log(event.target.value)
         this.setState({brand:event.target.value})
@@ -77,12 +78,12 @@ class MainForm extends Component {
         <div> </div>
 
         <div>
-        <button onClick={this.logBrandValue.bind(this)}> Search </button>
-        <button onClick={this.logBrandValue.bind(this)}>Create </button>
-        <button onClick={this.logBrandValue.bind(this)}> Update </button>
-        <button onClick={this.logBrandValue.bind(this)}> Delete </button>
+        <button> Search </button>
+        <button>Create </button>
+        <button> Update </button>
+        <button> Delete </button>
         </div>
-        
+    
         </div>
         )
     }
