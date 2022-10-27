@@ -9,7 +9,7 @@ class MainForm extends Component {
             model: '',
             review:'',
             year:'',
-            price:''
+            price:'',
         }
     }
 
@@ -18,7 +18,7 @@ class MainForm extends Component {
         this.setState({brand:event.target.value})
     }
 
-    logBrandValue(){
+    searchData(){
         console.log(this.state.brand);
     }   
 
@@ -75,7 +75,7 @@ class MainForm extends Component {
         <div>Price: {this.state.price} </div>
         <input onChange={this.handlePriceInput.bind(this)} ></input>
         <div> </div>
-        
+
         <div>
         <button onClick={this.logBrandValue.bind(this)}> Search </button>
         <button onClick={this.logBrandValue.bind(this)}>Create </button>
