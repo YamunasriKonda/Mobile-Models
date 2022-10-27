@@ -19,18 +19,51 @@ class MainForm extends Component {
         this.setState({ brand: event.target.value })
     }
 
+    saveDetails() {
+        console.log("Entering Save");
+        console.log('brand -----'+this.state.brand);
+        const object = {
+            brand: this.state.brand,
+            modelNo: this.state.model,
+            review: this.state.review,
+            year: this.state.year,
+            price: this.state.price
+        };
+        console.log("json: "+JSON.stringify(object))
+        const url = "http://localhost:4400/create"
+        fetch(url,{
+            method: 'POST',
+            body: JSON.stringify(object),
+            headers:{"Content-type": "application/json; charset=UTF-8"}
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+    }
+
     getdetails() {
         console.log("Entering fetch");
         const url = "http://localhost:4400/get/Apple"
-        fetch(url,{method:'DELETE'})
+        fetch(url)
+        .then(response => response.json())
+        .then(data => console.log(data))
+    }
+
+    updateDetails() {
+        console.log("Entering Update");
+        const url = "http://localhost:4400/update/"+this.state.brand
+        fetch(url,
+            {
+                method:'PUT',
+                body: JSON.stringify({review: this.state.review})
+            })
         .then(response => response.json())
         .then(data => console.log(data))
     }
 
     deleteDetails() {
-        console.log("Entering fetch");
+        console.log("Entering Delete");
         const urlDelete = "http://localhost:4400/delete/Apple"
-        fetch(urlDelete)
+        fetch(urlDelete,{method:'DELETE'})
         .then(response => response.json())
         .then(data => console.log(data))
     }
@@ -77,16 +110,16 @@ class MainForm extends Component {
             <div>Review:{this.state.review} </div>
             <input onChange={this.handleReviewInput.bind(this)}></input>
             <div>Year: {this.state.year} </div>
-            <input onChange={this.handleReviewInput.bind(this)}></input>
+            <input onChange={this.handleYearInput.bind(this)}></input>
             <div>Price: {this.state.price} </div>
             <input onChange={this.handlePriceInput.bind(this)} ></input>
             <div> </div>
 
             <div>
-                <button onClick={this.getdetails}> Search </button>
-                <button>Create </button>
-                <button> Update </button>
-                <button onClick={this.deleteDetails}> Delete </button>
+                <button onClick={this.getdetails.bind(this)}> Search </button>
+                <button onClick={this.saveDetails.bind(this)}>Create </button>
+                <button onClick={this.updateDetails.bind(this)}> Update </button>
+                <button onClick={this.deleteDetails.bind(this)}> Delete </button>
             </div>
 
         </div>

@@ -8,8 +8,9 @@ const { mobileModel } = require ("./db");
 
 router.use(express.json());
 
-router.post('/create', async(req,res, next)=> {
-     try{
+router.post('/create', async(req,res)=> {
+         console.log('Received Create request');
+         console.log(req.body.brand);
         const mobile = mongoose.model('mobiles', mobileModel);
         let newMobile=new mobile({
             brand:req.body.brand,
@@ -19,10 +20,6 @@ router.post('/create', async(req,res, next)=> {
             price: req.body.price
         });
         newMobile.save();
-        return res.status(201).json(newMobile);
-    } catch (err) {
-    return next(err);
-}
 
 });
 
@@ -55,8 +52,9 @@ router.delete('/delete/:brand', async (req, res, next)=> {
 
 router.put('/update/:modelno', async(req, res) => {
     try{
+        console.log('review --'+req.body.review)
         const mobile = mongoose.model('mobiles', mobileModel);
-        mobile.findOneAndUpdate({modelNo: req.params.modelno},{review:req.body.review},null);
+        mobile.findOneAndUpdate({brand: req.params.modelno},{review:req.body.review},null);
     } catch (err) {
         return res.status(503);
     }

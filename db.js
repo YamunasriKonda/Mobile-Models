@@ -23,7 +23,7 @@ const mobileschema = new Schema({
     review:{
         type:String,
         required:true,
-        minlength:5
+        minlength:2
 
     },
     
