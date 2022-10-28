@@ -2,7 +2,7 @@ import "./../App.css"
 
 function Heading() {
 
-    return <h2 className= "App-header">Welcome to Home Page</h2>;
+    return <h2 className= "App-header"> Welcome to Mobile Reviews </h2>;
 
 }
 
